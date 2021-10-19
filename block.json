@@ -1,11 +1,11 @@
 {
 	"apiVersion": 2,
-	"name": "create-block/wp-idg-ufr__block-button",
+	"name": "create-block/ufr-button",
 	"version": "0.1.0",
-	"title": "Wp Idg Ufr Block Button",
+	"title": "UFR - Botão",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"icon": "button",
+	"description": "Componente do DSGOV para o tema WP da Universidade Federal de Rondonópolis.",
 	"supports": {
 		"html": false
 	},
