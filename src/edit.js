@@ -16,9 +16,27 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 export default function edit( { attributes, setAttributes, isSelected } ) {
+	/**
+	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
+	 */
 	const { type, style, size, text, icon } = attributes;
+	/**
+	 * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
+	 *
+	 * @type {string}
+	 */
 	const iconClassName = `${ icon } ${ text.length !== 0 ? 'mr-1' : '' }`;
+	/**
+	 * Classe do botão, define seu tipo, estilo e tamanho
+	 *
+	 * @type {string}
+	 */
 	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
+	/**
+	 * Opções para a seleção de um tipo de botão
+	 *
+	 * @type { {label: string, value: string}[] }
+	 */
 	const typeOptions = [
 		{
 			label: 'Padrão',
@@ -33,6 +51,11 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 			value: 'block',
 		},
 	];
+	/**
+	 * Opções para a seleção de um estilo de botão
+	 *
+	 * @type { {label: string, value: string}[] }
+	 */
 	const styleOptions = [
 		{
 			label: 'Cores Principais',
@@ -47,6 +70,11 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 			value: '',
 		},
 	];
+	/**
+	 * Opções para a seleção do tamanho do botão
+	 *
+	 * @type { {label: string, value: string}[] }
+	 */
 	const sizeOptions = [
 		{
 			label: 'Médio',
