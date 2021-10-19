@@ -9,13 +9,14 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Wp Idg Ufr Block Button – hello from the editor!',
-				'wp-idg-ufr__block-button'
-			) }
-		</p>
+export default function edit( { attributes, setAttributes, isSelected } ) {
+	return isSelected ? (
+		<div { ...useBlockProps( { className: 'edit block-responsive ufr-block-component' } ) }>
+
+		</div>
+	) : (
+		<div { ...useBlockProps( { className: 'show block-responsive ufr-block-component' } ) }>
+
+		</div>
 	);
 }
