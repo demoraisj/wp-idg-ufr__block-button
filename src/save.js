@@ -28,19 +28,25 @@ export default function save( { attributes } ) {
 	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
 
 	return (
-		<a
-			type="button"
-			href={
-				link.startsWith( 'http' )
-					? link
-					: link
-					? `//${ link }`
-					: 'javascript:void(0)'
-			}
-			{ ...useBlockProps.save( { className: btnClassName } ) }
-		>
-			<i className={ iconClassName } />
-			{ text }
-		</a>
+		<div { ...useBlockProps.save( { className: btnClassName } ) }>
+			<div className="row">
+				<div className="col-12">
+					<a
+						type="button"
+						className={ btnClassName }
+						href={
+							link.startsWith( 'http' )
+								? link
+								: link
+								? `//${ link }`
+								: 'javascript:void(0)'
+						}
+					>
+						<i className={ iconClassName } />
+						{ text }
+					</a>
+				</div>
+			</div>
+		</div>
 	);
 }

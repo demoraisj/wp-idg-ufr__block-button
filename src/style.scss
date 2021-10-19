@@ -6,5 +6,7 @@
  */
 
 .wp-block-create-block-ufr-button {
-	text-decoration: none !important;
+	a {
+		text-decoration: none !important;
+	}
 }
