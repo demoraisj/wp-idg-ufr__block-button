@@ -11,11 +11,10 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 export default function save() {
 	return (
-		<p { ...useBlockProps.save() }>
-			{ __(
-				'Wp Idg Ufr Block Button – hello from the saved content!',
-				'wp-idg-ufr__block-button'
-			) }
+		<p {...useBlockProps.save()}>
+			<button className="br-button" type="button">
+				Rótulo
+			</button>
 		</p>
 	);
 }

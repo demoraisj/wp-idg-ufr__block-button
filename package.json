@@ -21,6 +21,7 @@
 		"wp-idg-ufr__block-components": "git+https://github.com/juniorjmm/wp-idg-ufr__block-components.git"
 	},
 	"devDependencies": {
+		"@wordpress/eslint-plugin": "^9.2.0",
 		"@wordpress/scripts": "^18.1.0"
 	}
 }
