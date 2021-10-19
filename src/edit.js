@@ -34,6 +34,12 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	 */
 	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
 	/**
+	 * Classe da linha que envolve o bloco. Define a posição dinamicamente.
+	 *
+	 * @type {string}
+	 */
+	const blockRowClassName = `row align-items-center ${ position }`;
+	/**
 	 * Opções para a seleção de um tipo de botão
 	 *
 	 * @type { {label: string, value: string}[] }
@@ -97,16 +103,16 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	 */
 	const positioningOptions = [
 		{
-			label: 'Direita',
-			value: '',
+			label: 'Esquerda',
+			value: 'text-left',
 		},
 		{
 			label: 'Centro',
-			value: '',
+			value: 'text-center',
 		},
 		{
-			label: 'Esquerda',
-			value: '',
+			label: 'Direita',
+			value: 'text-right',
 		},
 	];
 
@@ -116,7 +122,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	 * @param { boolean } selected
 	 * @return {JSX.Element} Elemento principal condicional
 	 */
-	function ConditionalMainContentRender( { selected } ) {
+	function ConditionalMainContentRender( selected ) {
 		return selected ? (
 			<div
 				{ ...useBlockProps( {
@@ -190,7 +196,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 					className: 'show block-responsive ufr-block-component',
 				} ) }
 			>
-				<div className="row align-items-center">
+				<div className={ blockRowClassName }>
 					<div className="col-12">
 						{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
 						<a
@@ -222,7 +228,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 					</fieldset>
 				</div>
 			</InspectorControls>
-			<ConditionalMainContentRender selected={ isSelected } />
+			{ ConditionalMainContentRender( isSelected ) }
 		</Fragment>
 	);
 }

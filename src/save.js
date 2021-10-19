@@ -30,7 +30,13 @@ export default function save( { attributes } ) {
 	return (
 		<a
 			type="button"
-			href={ link.startsWith( 'http' ) ? link : `//${ link }` }
+			href={
+				link.startsWith( 'http' )
+					? link
+					: link
+					? `//${ link }`
+					: 'javascript:void(0)'
+			}
 			{ ...useBlockProps.save( { className: btnClassName } ) }
 		>
 			<i className={ iconClassName } />

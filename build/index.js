@@ -66,6 +66,13 @@ function edit({
 
   const btnClassName = `br-button ${type} ${style} ${size}`;
   /**
+   * Classe da linha que envolve o bloco. Define a posição dinamicamente.
+   *
+   * @type {string}
+   */
+
+  const blockRowClassName = `row align-items-center ${position}`;
+  /**
    * Opções para a seleção de um tipo de botão
    *
    * @type { {label: string, value: string}[] }
@@ -120,14 +127,14 @@ function edit({
    */
 
   const positioningOptions = [{
-    label: 'Direita',
-    value: ''
+    label: 'Esquerda',
+    value: 'text-left'
   }, {
     label: 'Centro',
-    value: ''
+    value: 'text-center'
   }, {
-    label: 'Esquerda',
-    value: ''
+    label: 'Direita',
+    value: 'text-right'
   }];
   /**
    * Renderiza o conteúdo. Esconde as configurações do bloco quando ele não está selecionado.
@@ -136,9 +143,7 @@ function edit({
    * @return {JSX.Element} Elemento principal condicional
    */
 
-  function ConditionalMainContentRender({
-    selected
-  }) {
+  function ConditionalMainContentRender(selected) {
     return selected ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
       className: 'edit block-responsive ufr-block-component'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -189,7 +194,7 @@ function edit({
     }), text)))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
       className: 'show block-responsive ufr-block-component'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "row align-items-center"
+      className: blockRowClassName
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "col-12"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
@@ -211,9 +216,7 @@ function edit({
     value: position,
     attr: "position",
     setter: setAttributes
-  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ConditionalMainContentRender, {
-    selected: isSelected
-  }));
+  })))), ConditionalMainContentRender(isSelected));
 }
 
 /***/ }),
@@ -329,7 +332,7 @@ function save({
   const btnClassName = `br-button ${type} ${style} ${size}`;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     type: "button",
-    href: link.startsWith('http') ? link : `//${link}`
+    href: link.startsWith('http') ? link : link ? `//${link}` : 'javascript:void(0)'
   }, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: btnClassName
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {

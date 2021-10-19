@@ -39,8 +39,8 @@
 		},
 		"position": {
 			"type": "string",
-			"enum": ["", "", ""],
-			"default": ""
+			"enum": ["text-left", "text-center", "text-right"],
+			"default": "text-center"
 		},
 		"link": {
 			"type": "string",

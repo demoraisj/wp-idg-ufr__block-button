@@ -3,6 +3,7 @@
 	"rules": {
 		"react-hooks/rules-of-hooks": "off",
 		"jsdoc/require-param": "off",
-		"import/no-extraneous-dependencies": "off"
+		"import/no-extraneous-dependencies": "off",
+		"no-nested-ternary": "off"
 	}
 }
