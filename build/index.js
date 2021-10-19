@@ -18,6 +18,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-idg-ufr__block-components */ "./node_modules/wp-idg-ufr__block-components/dist/index.modern.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -36,15 +39,38 @@ function edit({
   setAttributes,
   isSelected
 }) {
+  /**
+   * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
+   */
   const {
     type,
     style,
     size,
     text,
-    icon
+    icon,
+    position,
+    link
   } = attributes;
+  /**
+   * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
+   *
+   * @type {string}
+   */
+
   const iconClassName = `${icon} ${text.length !== 0 ? 'mr-1' : ''}`;
+  /**
+   * Classe do botão, define seu tipo, estilo e tamanho
+   *
+   * @type {string}
+   */
+
   const btnClassName = `br-button ${type} ${style} ${size}`;
+  /**
+   * Opções para a seleção de um tipo de botão
+   *
+   * @type { {label: string, value: string}[] }
+   */
+
   const typeOptions = [{
     label: 'Padrão',
     value: ''
@@ -55,6 +81,12 @@ function edit({
     label: 'Bloco (Ocupa todo o espaço horizontal disponível)',
     value: 'block'
   }];
+  /**
+   * Opções para a seleção de um estilo de botão
+   *
+   * @type { {label: string, value: string}[] }
+   */
+
   const styleOptions = [{
     label: 'Cores Principais',
     value: 'primary'
@@ -65,6 +97,12 @@ function edit({
     label: 'Fundo Transparente',
     value: ''
   }];
+  /**
+   * Opções para a seleção do tamanho do botão
+   *
+   * @type { {label: string, value: string}[] }
+   */
+
   const sizeOptions = [{
     label: 'Médio',
     value: ''
@@ -75,59 +113,107 @@ function edit({
     label: 'Grande',
     value: 'large'
   }];
-  return isSelected ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'edit block-responsive ufr-block-component'
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "row align-items-center"
+  /**
+   * Opções para configuração de posição do botão
+   *
+   * @type { {label: string, value: string}[] }
+   */
+
+  const positioningOptions = [{
+    label: 'Direita',
+    value: ''
+  }, {
+    label: 'Centro',
+    value: ''
+  }, {
+    label: 'Esquerda',
+    value: ''
+  }];
+  /**
+   * Renderiza o conteúdo. Esconde as configurações do bloco quando ele não está selecionado.
+   *
+   * @param { boolean } selected
+   * @return {JSX.Element} Elemento principal condicional
+   */
+
+  function ConditionalMainContentRender({
+    selected
+  }) {
+    return selected ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+      className: 'edit block-responsive ufr-block-component'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "row align-items-center"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "col config"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRBlockHeader, {
+      title: "Bot\xE3o",
+      subtitle: "Configure a aparen\xEAncia do bot\xE3o abaixo."
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
+      label: "Escolha o Tipo do Bot\xE3o",
+      options: typeOptions,
+      value: type,
+      attr: "type",
+      setter: setAttributes
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
+      label: "Escolha o Estilo do Bot\xE3o",
+      options: styleOptions,
+      value: style,
+      attr: "style",
+      setter: setAttributes
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
+      label: "Escolha o Tamanho do Bot\xE3o",
+      options: sizeOptions,
+      value: size,
+      attr: "size",
+      setter: setAttributes
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRInput, {
+      label: "Texto do Bot\xE3o",
+      value: text,
+      attr: "text",
+      setter: setAttributes
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRInput, {
+      label: "Link para Navegar ao Clicar",
+      value: link,
+      attr: "link",
+      setter: setAttributes
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRIconPicker, {
+      setter: setAttributes
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "row preview"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: btnClassName,
+      type: "button",
+      href: "javascript:void(0)"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+      className: iconClassName
+    }), text)))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+      className: 'show block-responsive ufr-block-component'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "row align-items-center"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "col-12"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: btnClassName,
+      type: "button",
+      href: "javascript:void(0)"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+      className: iconClassName
+    }), text))));
+  }
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+    key: "setting"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "col config"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRBlockHeader, {
-    title: "Bot\xE3o",
-    subtitle: "Configure a aparen\xEAncia do bot\xE3o abaixo."
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
-    label: "Escolha o Tipo do Bot\xE3o",
-    options: typeOptions,
-    value: type,
-    attr: "type",
+    id: "ufrControls"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
+    label: "Posi\xE7\xE3o Horizontal do Bot\xE3o",
+    options: positioningOptions,
+    value: position,
+    attr: "position",
     setter: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
-    label: "Escolha o Estilo do Bot\xE3o",
-    options: styleOptions,
-    value: style,
-    attr: "style",
-    setter: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRSelect, {
-    label: "Escolha o Tamanho do Bot\xE3o",
-    options: sizeOptions,
-    value: size,
-    attr: "size",
-    setter: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRInput, {
-    label: "Texto do Bot\xE3o",
-    value: text,
-    attr: "text",
-    setter: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRIconPicker, {
-    setter: setAttributes
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "row preview"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: btnClassName,
-    type: "button"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-    className: iconClassName
-  }), text)))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'show block-responsive ufr-block-component'
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "row align-items-center"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "col-12"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: btnClassName,
-    type: "button"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-    className: iconClassName
-  }), text))));
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ConditionalMainContentRender, {
+    selected: isSelected
+  }));
 }
 
 /***/ }),
@@ -195,10 +281,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ save; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 /**
@@ -211,11 +299,42 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
-function save() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "br-button",
-    type: "button"
-  }, "R\xF3tulo"));
+function save({
+  attributes
+}) {
+  /**
+   * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
+   */
+  const {
+    icon,
+    type,
+    style,
+    size,
+    text,
+    link
+  } = attributes;
+  /**
+   * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
+   *
+   * @type {string}
+   */
+
+  const iconClassName = `${icon} ${text.length !== 0 ? 'mr-1' : ''}`;
+  /**
+   * Classe do botão, define seu tipo, estilo e tamanho
+   *
+   * @type {string}
+   */
+
+  const btnClassName = `br-button ${type} ${style} ${size}`;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    type: "button",
+    href: link.startsWith('http') ? link : `//${link}`
+  }, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+    className: btnClassName
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
+    className: iconClassName
+  }), text);
 }
 
 /***/ }),
@@ -502,6 +621,36 @@ module.exports = window["wp"]["blocks"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ _extends; }
+/* harmony export */ });
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
 
 /***/ })
 

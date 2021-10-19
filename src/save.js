@@ -9,12 +9,32 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save( { attributes } ) {
+	/**
+	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
+	 */
+	const { icon, type, style, size, text, link } = attributes;
+	/**
+	 * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
+	 *
+	 * @type {string}
+	 */
+	const iconClassName = `${ icon } ${ text.length !== 0 ? 'mr-1' : '' }`;
+	/**
+	 * Classe do botão, define seu tipo, estilo e tamanho
+	 *
+	 * @type {string}
+	 */
+	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
+
 	return (
-		<p {...useBlockProps.save()}>
-			<button className="br-button" type="button">
-				Rótulo
-			</button>
-		</p>
+		<a
+			type="button"
+			href={ link.startsWith( 'http' ) ? link : `//${ link }` }
+			{ ...useBlockProps.save( { className: btnClassName } ) }
+		>
+			<i className={ iconClassName } />
+			{ text }
+		</a>
 	);
 }

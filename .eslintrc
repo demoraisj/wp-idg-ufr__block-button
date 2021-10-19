@@ -2,6 +2,7 @@
 	"extends": [ "plugin:@wordpress/eslint-plugin/recommended" ],
 	"rules": {
 		"react-hooks/rules-of-hooks": "off",
-		"jsdoc/require-param": "off"
+		"jsdoc/require-param": "off",
+		"import/no-extraneous-dependencies": "off"
 	}
 }

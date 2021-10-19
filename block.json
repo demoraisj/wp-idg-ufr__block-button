@@ -36,6 +36,15 @@
 		"icon": {
 			"type": "string",
 			"default": ""
+		},
+		"position": {
+			"type": "string",
+			"enum": ["", "", ""],
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
 		}
 	}
 }
