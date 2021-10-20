@@ -21,24 +21,28 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
 	 */
 	const { type, style, size, text, icon, position, link } = attributes;
+
 	/**
 	 * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
 	 *
 	 * @type {string}
 	 */
 	const iconClassName = `${ icon } ${ text.length !== 0 ? 'mr-1' : '' }`;
+
 	/**
 	 * Classe do botão, define seu tipo, estilo e tamanho
 	 *
 	 * @type {string}
 	 */
 	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
+
 	/**
 	 * Classe da linha que envolve o bloco. Define a posição dinamicamente.
 	 *
 	 * @type {string}
 	 */
 	const blockRowClassName = `row align-items-center ${ position }`;
+
 	/**
 	 * Opções para a seleção de um tipo de botão
 	 *
@@ -58,6 +62,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 			value: 'block',
 		},
 	];
+
 	/**
 	 * Opções para a seleção de um estilo de botão
 	 *
@@ -77,6 +82,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 			value: '',
 		},
 	];
+
 	/**
 	 * Opções para a seleção do tamanho do botão
 	 *
@@ -96,6 +102,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 			value: 'large',
 		},
 	];
+
 	/**
 	 * Opções para configuração de posição do botão
 	 *

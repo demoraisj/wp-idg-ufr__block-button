@@ -312,7 +312,8 @@ function save({
     style,
     size,
     text,
-    link
+    link,
+    position
   } = attributes;
   /**
    * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
@@ -328,10 +329,15 @@ function save({
    */
 
   const btnClassName = `br-button ${type} ${style} ${size}`;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: btnClassName
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "row"
+  /**
+   * Classe da linha que envolve o bloco. Define a posição dinamicamente.
+   *
+   * @type {string}
+   */
+
+  const blockRowClassName = `row align-items-center ${position}`;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: blockRowClassName
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "col-12"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
