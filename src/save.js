@@ -24,7 +24,7 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...useBlockProps.save() }>
-			<div className={ `row ${ position }` }>
+			<div className="row">
 				<div
 					className={ `col-12 d-flex justify-content-${ position }` }
 				>

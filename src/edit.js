@@ -199,7 +199,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 					className: 'show block-responsive ufr-block-component',
 				} ) }
 			>
-				<div className={ `row ${ position }` }>
+				<div className="row">
 					<div
 						className={ `col-12 d-flex justify-content-${ position }` }
 					>
