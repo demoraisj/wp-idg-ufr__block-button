@@ -1,1 +1,0 @@
-<?php return array('dependencies' => array('react', 'wp-block-editor', 'wp-blocks', 'wp-element', 'wp-polyfill'), 'version' => '720defc2c82a7a338a805fb356f596cd');

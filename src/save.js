@@ -33,13 +33,13 @@ export default function save( { attributes } ) {
 						className={ `br-button ${ type } ${ style } ${ size }` }
 						type="button"
 						target={ blank ? '_blank' : '_self' }
-						rel="noreferrer"
+						rel="noreferrer noopener"
 						href={
-							link.startsWith( 'http' )
+							link.toLowerCase().startsWith( 'http' )
 								? link.toLowerCase()
-								: link.toLowerCase()
+								: link
 								? `//${ link.toLowerCase() }`
-								: 'javascript:void(0)'
+								: '#'
 						}
 					>
 						<i className={ iconClassName } />
