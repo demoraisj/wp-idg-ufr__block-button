@@ -49,7 +49,8 @@ function edit({
     text,
     icon,
     position,
-    link
+    link,
+    blank
   } = attributes;
   /**
    * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
@@ -167,6 +168,11 @@ function edit({
       label: "Link para Navegar ao Clicar",
       value: link,
       attr: "link",
+      setter: setAttributes
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRCheckbox, {
+      label: "Abrir link em uma nova p\xE1gina?",
+      checked: blank,
+      attr: "blank",
       setter: setAttributes
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(wp_idg_ufr_block_components__WEBPACK_IMPORTED_MODULE_2__.UFRIconPicker, {
       setter: setAttributes
@@ -301,7 +307,8 @@ function save({
     size,
     text,
     link,
-    position
+    position,
+    blank
   } = attributes;
   /**
    * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
@@ -317,7 +324,9 @@ function save({
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     className: `br-button ${type} ${style} ${size}`,
     type: "button",
-    href: link.startsWith('http') ? link : link ? `//${link}` : 'javascript:void(0)'
+    target: blank ? '_blank' : '_self',
+    rel: "noreferrer",
+    href: link.startsWith('http') ? link.toLowerCase() : link.toLowerCase() ? `//${link.toLowerCase()}` : 'javascript:void(0)'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: iconClassName
   }), text))));
@@ -358,6 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UFRBlockHeader": function() { return /* binding */ UFRBlockHeader; },
+/* harmony export */   "UFRCheckbox": function() { return /* binding */ UFRCheckbox; },
 /* harmony export */   "UFRGaleryBtn": function() { return /* binding */ UFRGaleryBtn; },
 /* harmony export */   "UFRIconPicker": function() { return /* binding */ UFRIconPicker; },
 /* harmony export */   "UFRInput": function() { return /* binding */ UFRInput; },
@@ -558,11 +568,45 @@ function Select(_ref) {
   }, methods.renderOptions(options)));
 }
 
+function Checkbox(_ref) {
+  var attr = _ref.attr,
+      label = _ref.label,
+      _ref$checked = _ref.checked,
+      checked = _ref$checked === void 0 ? false : _ref$checked,
+      _ref$valWhenChecked = _ref.valWhenChecked,
+      valWhenChecked = _ref$valWhenChecked === void 0 ? true : _ref$valWhenChecked,
+      _ref$valWhenUnchecked = _ref.valWhenUnchecked,
+      valWhenUnchecked = _ref$valWhenUnchecked === void 0 ? false : _ref$valWhenUnchecked,
+      setter = _ref.setter;
+  var methods = {
+    onChange: function onChange() {
+      var input = document.getElementById(attr);
+      var attributes = {};
+      attributes[attr] = input.checked ? valWhenChecked : valWhenUnchecked;
+      setter(attributes);
+    }
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      margin: '10px 0'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    name: attr,
+    id: attr,
+    type: "checkbox",
+    checked: checked,
+    onChange: methods.onChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: attr
+  }, label));
+}
+
 var UFRBlockHeader = BlockHeader;
 var UFRGaleryBtn = GaleryBtn;
 var UFRIconPicker = IconPicker;
 var UFRInput = Input;
 var UFRSelect = Select;
+var UFRCheckbox = Checkbox;
 
 
 //# sourceMappingURL=index.modern.js.map

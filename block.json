@@ -45,6 +45,10 @@
 		"link": {
 			"type": "string",
 			"default": ""
+		},
+		"blank": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }

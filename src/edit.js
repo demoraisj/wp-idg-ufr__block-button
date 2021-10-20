@@ -4,6 +4,7 @@ import {
 	UFRInput,
 	UFRSelect,
 	UFRIconPicker,
+	UFRCheckbox,
 } from 'wp-idg-ufr__block-components';
 import './editor.scss';
 import { Fragment } from 'react';
@@ -20,7 +21,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	/**
 	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
 	 */
-	const { type, style, size, text, icon, position, link } = attributes;
+	const { type, style, size, text, icon, position, link, blank } = attributes;
 
 	/**
 	 * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
@@ -165,6 +166,13 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 							label="Link para Navegar ao Clicar"
 							value={ link }
 							attr="link"
+							setter={ setAttributes }
+						/>
+
+						<UFRCheckbox
+							label="Abrir link em uma nova página?"
+							checked={ blank }
+							attr="blank"
 							setter={ setAttributes }
 						/>
 

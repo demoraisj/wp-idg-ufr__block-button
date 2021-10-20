@@ -13,7 +13,7 @@ export default function save( { attributes } ) {
 	/**
 	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
 	 */
-	const { icon, type, style, size, text, link, position } = attributes;
+	const { icon, type, style, size, text, link, position, blank } = attributes;
 
 	/**
 	 * Classe do ícone do botão. Contem margem quando o ícone é acompanhado de texto
@@ -32,11 +32,13 @@ export default function save( { attributes } ) {
 					<a
 						className={ `br-button ${ type } ${ style } ${ size }` }
 						type="button"
+						target={ blank ? '_blank' : '_self' }
+						rel="noreferrer"
 						href={
 							link.startsWith( 'http' )
-								? link
-								: link
-								? `//${ link }`
+								? link.toLowerCase()
+								: link.toLowerCase()
+								? `//${ link.toLowerCase() }`
 								: 'javascript:void(0)'
 						}
 					>
