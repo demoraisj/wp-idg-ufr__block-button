@@ -30,20 +30,6 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	const iconClassName = `${ icon } ${ text.length !== 0 ? 'mr-1' : '' }`;
 
 	/**
-	 * Classe do botão, define seu tipo, estilo e tamanho
-	 *
-	 * @type {string}
-	 */
-	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
-
-	/**
-	 * Classe da linha que envolve o bloco. Define a posição dinamicamente.
-	 *
-	 * @type {string}
-	 */
-	const blockRowClassName = `row align-items-center ${ position }`;
-
-	/**
 	 * Opções para a seleção de um tipo de botão
 	 *
 	 * @type { {label: string, value: string}[] }
@@ -111,15 +97,15 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	const positioningOptions = [
 		{
 			label: 'Esquerda',
-			value: 'text-left',
+			value: 'start',
 		},
 		{
 			label: 'Centro',
-			value: 'text-center',
+			value: 'center',
 		},
 		{
 			label: 'Direita',
-			value: 'text-right',
+			value: 'end',
 		},
 	];
 
@@ -131,6 +117,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 	 */
 	function ConditionalMainContentRender( selected ) {
 		return selected ? (
+			// Visuzalização quando selecionado
 			<div
 				{ ...useBlockProps( {
 					className: 'edit block-responsive ufr-block-component',
@@ -187,7 +174,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 					<div className="row preview">
 						{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
 						<a
-							className={ btnClassName }
+							className={ `br-button ${ type } ${ style } ${ size }` }
 							type="button"
 							href="javascript:void(0)"
 						>
@@ -198,16 +185,19 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 				</div>
 			</div>
 		) : (
+			// Visuzalização quando não selecionado
 			<div
 				{ ...useBlockProps( {
 					className: 'show block-responsive ufr-block-component',
 				} ) }
 			>
-				<div className={ blockRowClassName }>
-					<div className="col-12">
+				<div className={ `row ${ position }` }>
+					<div
+						className={ `col-12 d-flex justify-content-${ position }` }
+					>
 						{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
 						<a
-							className={ btnClassName }
+							className={ `br-button ${ type } ${ style } ${ size }` }
 							type="button"
 							href="javascript:void(0)"
 						>
@@ -235,6 +225,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 					</fieldset>
 				</div>
 			</InspectorControls>
+
 			{ ConditionalMainContentRender( isSelected ) }
 		</Fragment>
 	);

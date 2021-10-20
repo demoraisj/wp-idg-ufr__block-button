@@ -22,27 +22,16 @@ export default function save( { attributes } ) {
 	 */
 	const iconClassName = `${ icon } ${ text.length !== 0 ? 'mr-1' : '' }`;
 
-	/**
-	 * Classe do botão, define seu tipo, estilo e tamanho
-	 *
-	 * @type {string}
-	 */
-	const btnClassName = `br-button ${ type } ${ style } ${ size }`;
-
-	/**
-	 * Classe da linha que envolve o bloco. Define a posição dinamicamente.
-	 *
-	 * @type {string}
-	 */
-	const blockRowClassName = `row align-items-center ${ position }`;
-
 	return (
 		<div { ...useBlockProps.save() }>
-			<div className={ blockRowClassName }>
-				<div className="col-12">
+			<div className={ `row ${ position }` }>
+				<div
+					className={ `col-12 d-flex justify-content-${ position }` }
+				>
+					{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
 					<a
+						className={ `br-button ${ type } ${ style } ${ size }` }
 						type="button"
-						className={ btnClassName }
 						href={
 							link.startsWith( 'http' )
 								? link

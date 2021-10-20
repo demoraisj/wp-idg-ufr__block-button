@@ -59,20 +59,6 @@ function edit({
 
   const iconClassName = `${icon} ${text.length !== 0 ? 'mr-1' : ''}`;
   /**
-   * Classe do botão, define seu tipo, estilo e tamanho
-   *
-   * @type {string}
-   */
-
-  const btnClassName = `br-button ${type} ${style} ${size}`;
-  /**
-   * Classe da linha que envolve o bloco. Define a posição dinamicamente.
-   *
-   * @type {string}
-   */
-
-  const blockRowClassName = `row align-items-center ${position}`;
-  /**
    * Opções para a seleção de um tipo de botão
    *
    * @type { {label: string, value: string}[] }
@@ -128,13 +114,13 @@ function edit({
 
   const positioningOptions = [{
     label: 'Esquerda',
-    value: 'text-left'
+    value: 'start'
   }, {
     label: 'Centro',
-    value: 'text-center'
+    value: 'center'
   }, {
     label: 'Direita',
-    value: 'text-right'
+    value: 'end'
   }];
   /**
    * Renderiza o conteúdo. Esconde as configurações do bloco quando ele não está selecionado.
@@ -144,7 +130,8 @@ function edit({
    */
 
   function ConditionalMainContentRender(selected) {
-    return selected ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    return selected ? // Visuzalização quando selecionado
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
       className: 'edit block-responsive ufr-block-component'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "row align-items-center"
@@ -186,19 +173,20 @@ function edit({
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "row preview"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-      className: btnClassName,
+      className: `br-button ${type} ${style} ${size}`,
       type: "button",
       href: "javascript:void(0)"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
       className: iconClassName
-    }), text)))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    }), text)))) : // Visuzalização quando não selecionado
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
       className: 'show block-responsive ufr-block-component'
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: blockRowClassName
+      className: `row ${position}`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "col-12"
+      className: `col-12 d-flex justify-content-${position}`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-      className: btnClassName,
+      className: `br-button ${type} ${style} ${size}`,
       type: "button",
       href: "javascript:void(0)"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
@@ -322,27 +310,13 @@ function save({
    */
 
   const iconClassName = `${icon} ${text.length !== 0 ? 'mr-1' : ''}`;
-  /**
-   * Classe do botão, define seu tipo, estilo e tamanho
-   *
-   * @type {string}
-   */
-
-  const btnClassName = `br-button ${type} ${style} ${size}`;
-  /**
-   * Classe da linha que envolve o bloco. Define a posição dinamicamente.
-   *
-   * @type {string}
-   */
-
-  const blockRowClassName = `row align-items-center ${position}`;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: blockRowClassName
+    className: `row ${position}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "col-12"
+    className: `col-12 d-flex justify-content-${position}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: `br-button ${type} ${style} ${size}`,
     type: "button",
-    className: btnClassName,
     href: link.startsWith('http') ? link : link ? `//${link}` : 'javascript:void(0)'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: iconClassName
