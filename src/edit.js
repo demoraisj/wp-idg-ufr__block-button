@@ -128,7 +128,7 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 					<div className="col config">
 						<UFRBlockHeader
 							title="Botão"
-							subtitle="Configure a aparenência do botão abaixo."
+							description="Configure a aparenência do botão abaixo."
 						/>
 
 						<UFRSelect
