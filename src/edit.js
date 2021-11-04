@@ -176,7 +176,10 @@ export default function edit( { attributes, setAttributes, isSelected } ) {
 							setter={ setAttributes }
 						/>
 
-						<UFRIconPicker setter={ setAttributes } />
+						<UFRIconPicker
+							setter={ setAttributes }
+							value={ icon }
+						/>
 					</div>
 
 					<div className="row preview">
